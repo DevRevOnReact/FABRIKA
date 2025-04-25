@@ -1,0 +1,29 @@
+# Build stage for frontend
+FROM node:20-alpine as frontend-builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Build stage for backend
+FROM node:20-alpine as backend-builder
+WORKDIR /app
+COPY backend/package*.json ./
+RUN npm install --production
+COPY backend ./
+
+# Final production image
+FROM node:20-alpine
+WORKDIR /app
+
+# Copy backend
+COPY --from=backend-builder /app ./
+# Copy frontend build
+COPY --from=frontend-builder /app/dist ./public
+
+# Expose port
+EXPOSE 3001
+
+# Start command
+CMD ["node", "index.js"]
