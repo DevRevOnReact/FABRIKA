@@ -1,6 +1,6 @@
 import { Task, TaskUpdateData} from '../types';
 
-const API_BASE = 'http://localhost:3001/tasks';
+const API_BASE = '/tasks';
 
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
