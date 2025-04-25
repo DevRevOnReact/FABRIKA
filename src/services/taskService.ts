@@ -1,4 +1,4 @@
-import { Task, TaskUpdateData} from '../types';
+import { Task, TaskUpdateData } from '../types';
 
 const API_BASE = '/tasks';
 
