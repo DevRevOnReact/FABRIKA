@@ -16,11 +16,11 @@ app.use(express.static(join(__dirname, 'public')));
 let tasks = [];
 let nextId = 1;
 
-app.get('/tasks', (req, res) => {
+app.get('https://fabrika.onrender.com/tasks', (req, res) => {
   res.json(tasks);
 });
 
-app.post('/tasks', (req, res) => {
+app.post('https://fabrika.onrender.com/tasks', (req, res) => {
   const { title } = req.body;
   
   if (!title || title.trim() === '') {
@@ -37,7 +37,7 @@ app.post('/tasks', (req, res) => {
   res.status(201).json(newTask);
 });
 
-app.patch('/tasks/:id', (req, res) => {
+app.patch('https://fabrika.onrender.com/tasks/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const taskIndex = tasks.findIndex(task => task.id === id);
   
@@ -53,7 +53,7 @@ app.patch('/tasks/:id', (req, res) => {
   res.json(tasks[taskIndex]);
 });
 
-app.delete('/tasks/:id', (req, res) => {
+app.delete('https://fabrika.onrender.com/tasks/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const taskIndex = tasks.findIndex(task => task.id === id);
   
@@ -70,5 +70,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on :${PORT}`);
 });
